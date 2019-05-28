@@ -2,6 +2,7 @@ class Game
 
   def initialize
     @board = Hash.new
+    @score = Hash.new
   end
 
 =begin
@@ -16,7 +17,24 @@ board
     pos = gets.chomp
     if valid?(pos) && empty?(pos)
       @board[pos] = player
+
+      col = pos[1]
+      row = pos[0]
+
+      if @score["row #{row}"] == nil
+        @score["row #{row}"] = player
+      else
+        @score["row #{row}"] += player
+      end
+
+      if @score["col #{col}"] == nil
+        @score["col #{col}"] = player
+      else
+        @score["col #{col}"] += player
+      end
+
       puts @board
+      puts @score
     elsif !valid?(pos)
       puts "Format incorrect"
       move(player)
@@ -54,11 +72,7 @@ board
   end
 
   def game_over
-    if @board["11"] && @board["12"] && @board["13"] == "X" || 
-       @board["21"] && @board["22"] && @board["23"] == "X" ||
-       @board["31"] && @board["32"] && @board["33"] == "X"
-      puts "X is a winner"
-      check_board
+    if winner == true
       return true
     elsif @board.length >= 9
       puts "Game is draw!"
@@ -66,13 +80,9 @@ board
     end
   end
 
-  def check_board
-    i = 1
-    count = 0
-    
-      @board.each do |key, value|
-        col = key[0]
-        row = key[1]
+  def winner
+    @score.each do |key, value|
+      return true if value == "XXX" || value == "OOO"
     end
   end
 
