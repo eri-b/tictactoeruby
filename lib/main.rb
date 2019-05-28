@@ -39,20 +39,42 @@ board
 
   def start
     counter = 0
-    gameOn = true
-    while gameOn
+    game_on = true
+    while game_on
 
       move("X") if counter % 2 == 0
       move("O") if counter % 2 == 1
 
       counter += 1
 
-      gameOn = false if counter >= 4
+      game_on = false if game_over
+
     end
     puts "game over"
   end
 
+  def game_over
+    if @board["11"] && @board["12"] && @board["13"] == "X" || 
+       @board["21"] && @board["22"] && @board["23"] == "X" ||
+       @board["31"] && @board["32"] && @board["33"] == "X"
+      puts "X is a winner"
+      check_board
+      return true
+    elsif @board.length >= 9
+      puts "Game is draw!"
+      return true
+    end
+  end
 
+  def check_board
+    i = 1
+    count = 0
+    
+      @board.each do |key, value|
+        col = key[0]
+        row = key[1]
+    end
+  end
 
 end
 
