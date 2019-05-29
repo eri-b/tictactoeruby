@@ -5,11 +5,16 @@ class Game
     @score = Hash.new("")
   end
 
-  def move(player)
+  def move(player, ai=false)
     print_board
-
     print "Player #{player}'s turn. Position of move: "
-    pos = gets.chomp
+
+    # Multiplayer
+    pos = gets.chomp if ai==false || player == "X"
+
+    # Singleplayer
+    pos = ai_play(player, ai) if ai==true && player == "O"
+
     if valid?(pos) && empty?(pos)
       @board[pos] = player
 
@@ -25,6 +30,22 @@ class Game
     else
       puts "something is wrong"
       move(player)
+    end
+  end
+
+  def ai_play(player, ai)
+    if ai == true && player == "O"
+      arr = ["11","12","13","21","22","23","31","32","33"]
+      @board.each do |key, value|
+        arr.each do |x|
+          arr.delete(x) if x == key
+        end
+      end
+
+      random = rand(arr.length)
+      pos = arr[random]
+      print pos
+      return pos
     end
   end
 
@@ -111,11 +132,8 @@ class Game
 end
 
 class AiGame < Game
-  def move(player)
-    if player == "X"
-      super
-    else
-      puts "computer play"
-    end
+  #ai = true
+  def move(player, ai=true)
+    super
   end
 end
