@@ -22,10 +22,10 @@ class Game
       record(pos, player)
 
     elsif !valid?(pos)
-      puts "Format incorrect"
+      puts "Please enter a number displayed in the Board"
       move(player)
     elsif valid?(pos) && !empty?(pos)
-      puts "Board position already full"
+      puts "Board position already taken"
       move(player)
     else
       puts "something is wrong"
@@ -132,7 +132,6 @@ class Game
 end
 
 class AiGame < Game
-  #ai = true
   def move(player, ai=true)
     super
   end
