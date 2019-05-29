@@ -21,16 +21,15 @@ board
       col = pos[1]
       row = pos[0]
 
-      if @score["row #{row}"] == nil
-        @score["row #{row}"] = player
-      else
-        @score["row #{row}"] += player
+      @score["row #{row}"] == nil ? @score["row #{row}"] = player : @score["row #{row}"] += player
+      @score["col #{col}"] == nil ? @score["col #{col}"] = player : @score["col #{col}"] += player
+
+      if col == row
+        @score["dia1"] == nil ? @score["dia1"] = player : @score["dia1"] += player
       end
 
-      if @score["col #{col}"] == nil
-        @score["col #{col}"] = player
-      else
-        @score["col #{col}"] += player
+      if (col.to_i + row.to_i)/2 == 2
+        @score["dia2"] == nil ? @score["dia2"] = player : @score["dia2"] += player
       end
 
       puts @board
@@ -82,10 +81,26 @@ board
 
   def winner
     @score.each do |key, value|
-      return true if value == "XXX" || value == "OOO"
+      if value == "XXX"
+         puts "X is winner"
+         return true
+      elsif value == "OOO"
+        puts "O is winner"
+        return true
+      end
     end
   end
 
+end
+
+class Welcome
+  puts "Welcome to Tic Tac Toe"
+  puts "Start a new game by typing Start"
+  print "Command: "
+  com = gets.chomp.downcase
+
+  if com == "start"
+  end
 end
 
 
