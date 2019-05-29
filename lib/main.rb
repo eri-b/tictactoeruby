@@ -5,9 +5,7 @@ class Game
     @score = Hash.new("")
   end
 
-
   def move(player)
-    # print current board
     print_board
 
     print "Player #{player}'s turn. Position of move: "
@@ -84,6 +82,9 @@ class Game
     if winner == true
       return true
     elsif @board.length >= 9
+      puts ""
+      print_board
+      puts ""
       puts "Game is draw!"
       return true
     end
@@ -93,9 +94,13 @@ class Game
     @score.each do |key, value|
       if value == "XXX"
         puts ""
+        print_board
+        puts ""
         puts "X is winner"
         return true
       elsif value == "OOO"
+        puts ""
+        print_board
         puts ""
         puts "O is winner"
         return true
@@ -105,26 +110,12 @@ class Game
 
 end
 
-class Setup
-  def initialize
-  end
-
-  def start
-    puts "Welcome to Tic Tac Toe"
-    print "Start a new game by typing Start:"
-    com = gets.chomp.downcase
-    if com == "start"
-      game1 = Game.new
-      game1.start
+class AiGame < Game
+  def move(player)
+    if player == "X"
+      super
     else
-      puts "Alright see ya later."
+      puts "computer play"
     end
   end
-
 end
-
-start_game = Setup.new
-start_game.start
-
-# game1 = Game.new
-# game1.start
