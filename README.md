@@ -23,10 +23,8 @@ Player is presented with the board and asked to choose a position according to t
 
 ### Board:
 
-11 12 13
-
-21 22 23
-
+11 12 13  
+21 22 23  
 31 32 33
 
 collaborators: eric , marcos
