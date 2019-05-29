@@ -2,38 +2,22 @@ class Game
 
   def initialize
     @board = Hash.new
-    @score = Hash.new
+    @score = Hash.new("")
   end
 
-=begin
-board
-11 12 13
-21 22 23
-31 32 33
-=end
 
   def move(player)
+    # print current board
+    print_board
+
     print "Player #{player}'s turn. Position of move: "
     pos = gets.chomp
     if valid?(pos) && empty?(pos)
       @board[pos] = player
 
-      col = pos[1]
-      row = pos[0]
+      # Create record of possible winning outcomes
+      record(pos, player)
 
-      @score["row #{row}"] == nil ? @score["row #{row}"] = player : @score["row #{row}"] += player
-      @score["col #{col}"] == nil ? @score["col #{col}"] = player : @score["col #{col}"] += player
-
-      if col == row
-        @score["dia1"] == nil ? @score["dia1"] = player : @score["dia1"] += player
-      end
-
-      if (col.to_i + row.to_i)/2 == 2
-        @score["dia2"] == nil ? @score["dia2"] = player : @score["dia2"] += player
-      end
-
-      puts @board
-      puts @score
     elsif !valid?(pos)
       puts "Format incorrect"
       move(player)
@@ -44,6 +28,32 @@ board
       puts "something is wrong"
       move(player)
     end
+  end
+
+  def print_board
+    puts ""
+    puts ""
+    (1..3).each do |i|
+      (1..3).each do |j|
+        if @board["#{i}#{j}"]
+          print @board["#{i}#{j}"] + "  "
+        else
+          print "#{i}#{j} "
+        end
+      end
+      puts ""
+    end
+  end
+
+  def record(pos, player)
+    col = pos[1]
+    row = pos[0]
+
+    @score["row #{row}"] += player
+    @score["col #{col}"] += player
+
+    @score["dia1"] += player if col == row
+    @score["dia2"] += player if (col.to_i + row.to_i)/2 == 2
   end
 
   def valid?(pos)
@@ -82,9 +92,11 @@ board
   def winner
     @score.each do |key, value|
       if value == "XXX"
-         puts "X is winner"
-         return true
+        puts ""
+        puts "X is winner"
+        return true
       elsif value == "OOO"
+        puts ""
         puts "O is winner"
         return true
       end
@@ -93,16 +105,26 @@ board
 
 end
 
-class Welcome
-  puts "Welcome to Tic Tac Toe"
-  puts "Start a new game by typing Start"
-  print "Command: "
-  com = gets.chomp.downcase
-
-  if com == "start"
+class Setup
+  def initialize
   end
+
+  def start
+    puts "Welcome to Tic Tac Toe"
+    print "Start a new game by typing Start:"
+    com = gets.chomp.downcase
+    if com == "start"
+      game1 = Game.new
+      game1.start
+    else
+      puts "Alright see ya later."
+    end
+  end
+
 end
 
+start_game = Setup.new
+start_game.start
 
-game1 = Game.new
-game1.start
+# game1 = Game.new
+# game1.start
