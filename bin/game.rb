@@ -1,6 +1,6 @@
 require '../lib/main.rb'
 
-class Setup
+class Game
     def initialize
     end
 
@@ -16,17 +16,17 @@ class Setup
           choice = gets.chomp
         end
         if choice == "1"
-          game2 = AiGame.new
+          game2 = AiBoard.new
           game2.start
         elsif choice == "2"
-          game1 = Game.new
+          game1 = Board.new
           game1.start
         end
 
         print "Well done, would you like to play again? (yes / no) "
         answer = gets.chomp.downcase
         if answer == "yes"
-            start_game = Setup.new
+            start_game = Game.new
             start_game.start
         else
           puts "Alright see ya later."
@@ -38,5 +38,5 @@ class Setup
 
   end
 
-  start_game = Setup.new
+  start_game = Game.new
   start_game.start

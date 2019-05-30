@@ -1,4 +1,4 @@
-class Game
+class Board
 
   def initialize
     @board = Hash.new
@@ -131,7 +131,7 @@ class Game
 
 end
 
-class AiGame < Game
+class AiBoard < Board
   def move(player, ai=true)
     super
   end
