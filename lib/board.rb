@@ -5,6 +5,7 @@ class Board
     @score = Hash.new("")
   end
 
+  #Player makes it's move
   def move(player, ai=false)
     print_board
     print "Player #{player}'s turn. Position of move: "
@@ -15,6 +16,11 @@ class Board
     # Singleplayer
     pos = ai_play(player, ai) if ai==true && player == "O"
 
+    check_move(pos, player)
+  end
+
+  #Check player's move validity
+  def check_move(pos, player)
     if valid?(pos) && empty?(pos)
       @board[pos] = player
 
@@ -33,6 +39,7 @@ class Board
     end
   end
 
+  #Makes AI move
   def ai_play(player, ai)
     if ai == true && player == "O"
       arr = ["11","12","13","21","22","23","31","32","33"]
@@ -99,6 +106,8 @@ class Board
     puts "game over"
   end
 
+  private
+
   def game_over
     if winner == true
       return true
@@ -129,7 +138,7 @@ class Board
     end
   end
 
-end
+end #Board Class
 
 class AiBoard < Board
   def move(player, ai=true)

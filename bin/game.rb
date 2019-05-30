@@ -1,4 +1,4 @@
-require '../lib/main.rb'
+require '../lib/board.rb'
 
 class Game
     def initialize
@@ -25,11 +25,15 @@ class Game
       if choice == "1"
         game2 = AiBoard.new
         game2.start
+        replay
       elsif choice == "2"
         game1 = Board.new
         game1.start
+        replay
       end
+    end
 
+    def replay
       print "Well done, would you like to play again? (yes / no) "
       answer = gets.chomp.downcase
       if answer == "yes"
