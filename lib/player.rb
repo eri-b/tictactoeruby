@@ -15,6 +15,18 @@ class Player
       p_input if check_format(p_input)
     end
 
+    def move(index)
+        while !@board.position_ok?(index)
+          print "Position taken. Please select another: "
+          #TODO loop the input
+          new_try = gets.chomp.upcase
+          index = new_try if check_format(new_try)
+        end
+        @board.add(index, @symbol)
+    end
+
+    private
+
     def check_format(input)
       while !format_ok?(input)
         print "Wrong format. Please enter your move: "
@@ -24,18 +36,8 @@ class Player
     end
 
     def format_ok?(index)
-        #validates input format
-        true if index =~ /^[1-3][1-3]$/
-    end
-
-    def move(index)
-        while !@board.position_ok?(index)
-          print "Position taken. Please select another: "
-          #TODO loop the input
-          new_try = gets.chomp.upcase
-          index = new_try if check_format(new_try)
-        end
-        @board.add(index, @symbol)
+      #validates input format
+      true if index =~ /^[1-3][1-3]$/
     end
 
 end

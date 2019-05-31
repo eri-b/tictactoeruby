@@ -9,6 +9,7 @@ module Ui
       names(game_on)
     else
       puts "Alright see ya later."
+      exit
     end
   end
 
