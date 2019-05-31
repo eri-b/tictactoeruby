@@ -29,8 +29,21 @@ class Board
     @score["dia2"] += symbol if (col.to_i + row.to_i)/2 == 2
   end
 
-  #TODO make visual board to display for players
-
+  
+  def print_board
+    puts ""
+    puts ""
+    (1..3).each do |i|
+      (1..3).each do |j|
+        if @board["#{i}#{j}"]
+          print @board["#{i}#{j}"] + "  "
+        else
+          print "#{i}#{j} "
+        end
+      end
+      puts ""
+    end
+  end
 
 
 

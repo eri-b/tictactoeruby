@@ -9,6 +9,7 @@ class Player
     end
 
     def get_move
+      @board.print_board
       print "#{@name}'s turn. Please enter your move: "
       p_input = gets.chomp.upcase
       p_input if check_format(p_input)

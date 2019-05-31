@@ -35,18 +35,25 @@ class Game
         @board.score.each do |key, value|
             game_over(@player1) if value == "XXX"
             game_over(@player2) if value == "OOO"
+            return false if value == "XXX" || value == "OOO"
         end
     end
 
     def game_over(player)
         puts "#{player.name} is the winner"
-        return false #TODO check why this return is not ending the game and fix it
     end
 
     def after_game
-        puts "Play again? (y / n)"
+        print "Play again? (yes): "
+        val = gets.chomp.downcase
+        reset_game if val == "yes"
     end
 
+    def reset_game
+      @board = Hash.new
+      running if val == "y"
+
+    end
     #TODO create AI (maybe?)
         #auto generates a name
         #auto allocate to player2
