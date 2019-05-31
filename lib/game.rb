@@ -12,7 +12,7 @@ class Game
 
     def running
     #loop the game while it is still not over
-      counter = 0
+      counter = 0 #TODO randomize starting player (maybe?)
       while game_on
         play(counter)
         counter += 1
@@ -40,14 +40,19 @@ class Game
 
     def game_over(player)
         puts "#{player.name} is the winner"
-        return false
+        return false #TODO check why this return is not ending the game and fix it
     end
 
     def after_game
         puts "Play again? (y / n)"
     end
 
-
+    #TODO create AI (maybe?)
+        #auto generates a name
+        #auto allocate to player2
+        #inputs
+            #auto generates based on board positions? or
+            #totally random input based on available positions?
 
 
 

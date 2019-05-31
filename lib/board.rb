@@ -29,6 +29,8 @@ class Board
     @score["dia2"] += symbol if (col.to_i + row.to_i)/2 == 2
   end
 
+  #TODO make visual board to display for players
+
 
 
 
