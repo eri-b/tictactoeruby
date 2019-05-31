@@ -10,4 +10,4 @@ player2 = Player.new(settings[2], "O")
 new_board = Board.new()
 
 game = Game.new(player1, player2, board)
-game.start if settings[0]
+game.running if settings[0]

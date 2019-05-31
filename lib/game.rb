@@ -20,22 +20,44 @@ class Game
         true if new_board.board[index] == nil
     end
 
-
-    def start
+    def running
+    #loop the game while it is still not over
       counter = 0
-      game_on = true
       while game_on
 
-        player1.move if counter % 2 == 0
-        player2.move if counter % 2 == 1
-
+        play(counter)
         counter += 1
 
-        game_on = false if game_over
-
       end
-      puts "game over"
+      game_over
     end
+
+    def play(counter)
+        # take the current player move
+        player = turn
+        index = get_move(player)
+        player.move(index)
+    end
+
+    def turn(counter)
+        counter % 2 == 0 ? player1 : player2
+    end
+
+    def game_on
+        
+    end
+
+    def game_over
+
+    end
+
+
+
+
+
+
+
+
 
 
 

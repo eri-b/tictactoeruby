@@ -8,7 +8,7 @@ class Board
 
   def add(index)
     #add value to the board if validated
-    @board[index] = player.symbol if 
+    @board[index] = 
   end
 
 
