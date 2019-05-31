@@ -1,9 +1,30 @@
-require '../lib/board.rb'
-
 class Game
     def initialize
     end
 
+    def is_valid?(index)
+        #validates input and returns 
+        format_ok? && position_ok?
+    end
+
+    def format_ok?(index)
+        #validates input format
+        true if pos =~ /^[1-3][1-3]$/
+    end
+
+    def position_ok?(index)
+        #checks if position is valid and/or available
+        true if new_board.board[index] == nil
+    end
+
+
+
+
+
+
+
+    
+    
     def start
       puts "Welcome to Tic Tac Toe"
       print "Start a new game by typing Start: "
@@ -45,6 +66,3 @@ class Game
     end
 
   end
-
-  start_game = Game.new
-  start_game.start

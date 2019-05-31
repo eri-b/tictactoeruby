@@ -1,9 +1,20 @@
 class Board
+  attr_accessor :board
 
   def initialize
     @board = Hash.new
     @score = Hash.new("")
   end
+
+  def add(index)
+    #add value to the board if validated
+    @board[index] = player.symbol if 
+  end
+
+
+
+
+
 
   #Player makes it's move
   def move(player, ai=false)
