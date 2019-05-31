@@ -10,24 +10,15 @@ class Game
         format_ok? && position_ok?
     end
 
-    def format_ok?(index)
-        #validates input format
-        true if pos =~ /^[1-3][1-3]$/
-    end
 
-    def position_ok?(index)
-        #checks if position is valid and/or available
-        true if new_board.board[index] == nil
-    end
+
 
     def running
     #loop the game while it is still not over
       counter = 0
       while game_on
-
         play(counter)
         counter += 1
-
       end
       game_over
     end
@@ -35,7 +26,7 @@ class Game
     def play(counter)
         # take the current player move
         player = turn
-        index = get_move(player)
+        index = player.get_move
         player.move(index)
     end
 
@@ -44,7 +35,7 @@ class Game
     end
 
     def game_on
-        
+
     end
 
     def game_over

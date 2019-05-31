@@ -6,13 +6,33 @@ class Board
     @score = Hash.new("")
   end
 
-  def add(index)
+
+  def position_ok?(index)
+      #checks if position is valid and/or available
+      true if @board[index] == nil
+  end
+
+  def add(index, symbol)
     #add value to the board if validated
-    @board[index] = 
+    @board[index] = symbol
+    #do something with score..
   end
 
 
 
+
+
+
+  def record(pos, player)
+    col = pos[1]
+    row = pos[0]
+
+    @score["row #{row}"] += player
+    @score["col #{col}"] += player
+
+    @score["dia1"] += player if col == row
+    @score["dia2"] += player if (col.to_i + row.to_i)/2 == 2
+  end
 
 
 

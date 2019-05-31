@@ -25,9 +25,6 @@ module Ui
     return [game_on, player1, player2]
   end
 
-  def get_move(player)
-    print "#{player.name}'s turn. Please enter your move: "
-    p_input = gets.chomp.upcase
-  end
+
 
 end #module
