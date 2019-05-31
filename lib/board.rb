@@ -1,11 +1,10 @@
 class Board
-  attr_accessor :board
+  attr_accessor :board, :score
 
   def initialize
     @board = Hash.new
     @score = Hash.new("")
   end
-
 
   def position_ok?(index)
       #checks if position is valid and/or available
@@ -15,14 +14,26 @@ class Board
   def add(index, symbol)
     #add value to the board if validated
     @board[index] = symbol
-    #do something with score..
+    record(index, symbol)
+  end
+
+  def record(index, symbol)
+    # creates a hash with all rows and columns and diagonals with board values
+    col = index[1]
+    row = index[0]
+
+    @score["row #{row}"] += symbol
+    @score["col #{col}"] += symbol
+
+    @score["dia1"] += symbol if col == row
+    @score["dia2"] += symbol if (col.to_i + row.to_i)/2 == 2
   end
 
 
 
 
 
-
+=begin
   def record(pos, player)
     col = pos[1]
     row = pos[0]
@@ -169,10 +180,14 @@ class Board
     end
   end
 
+=end
+
 end #Board Class
 
+=begin
 class AiBoard < Board
   def move(player, ai=true)
     super
   end
 end
+=end

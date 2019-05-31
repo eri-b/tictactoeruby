@@ -1,9 +1,10 @@
 class Player
     attr_accessor :name, :symbol, :choices
 
-    def initialize(name, symbol, choices)
+    def initialize(name, symbol, board)
         @name = name
         @symbol = symbol
+        @board = board
         @choices = []
     end
 
@@ -23,15 +24,15 @@ class Player
 
     def format_ok?(index)
         #validates input format
-        true if pos =~ /^[1-3][1-3]$/
+        true if index =~ /^[1-3][1-3]$/
     end
 
     def move(index)
-        while !new_board.position_ok?
-          puts "Position taken."
-          get_move
+        while !@board.position_ok?(index)
+          print "Position taken. Please select another: "
+          #TODO loop the input
         end
-        new_board.add(index, @symbol)
+        @board.add(index, @symbol)
     end
 
 end

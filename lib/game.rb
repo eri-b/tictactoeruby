@@ -10,9 +10,6 @@ class Game
         format_ok? && position_ok?
     end
 
-
-
-
     def running
     #loop the game while it is still not over
       counter = 0
@@ -20,26 +17,34 @@ class Game
         play(counter)
         counter += 1
       end
-      game_over
+      after_game
     end
 
     def play(counter)
         # take the current player move
-        player = turn
+        player = turn(counter)
         index = player.get_move
         player.move(index)
     end
 
     def turn(counter)
-        counter % 2 == 0 ? player1 : player2
+        counter % 2 == 0 ? @player1 : @player2
     end
 
     def game_on
-
+        @board.score.each do |key, value|
+            game_over(@player1) if value == "XXX"
+            game_over(@player2) if value == "OOO"
+        end
     end
 
-    def game_over
+    def game_over(player)
+        puts "#{player} is the winner"
+        return false
+    end
 
+    def after_game
+        puts "Play again? (y / n)"
     end
 
 
@@ -54,7 +59,7 @@ class Game
 
 
 
-
+=begin
     def start
       puts "Welcome to Tic Tac Toe"
       print "Start a new game by typing Start: "
@@ -94,5 +99,7 @@ class Game
         puts "Alright see ya later."
       end
     end
+
+=end
 
   end
