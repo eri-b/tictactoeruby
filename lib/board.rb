@@ -16,18 +16,18 @@ class Board
     @board[index] = symbol
     record(index, symbol)
   end
-  
+
   def print_board
-    puts ""
     puts ""
     (1..3).each do |i|
       (1..3).each do |j|
         if @board["#{i}#{j}"]
           print @board["#{i}#{j}"] + "  "
         else
-          print "#{i}#{j} "
+          print "#{i}#{j}  "
         end
       end
+      puts ""
       puts ""
     end
   end
