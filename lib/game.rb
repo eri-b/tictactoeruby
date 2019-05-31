@@ -39,7 +39,7 @@ class Game
     end
 
     def game_over(player)
-        puts "#{player} is the winner"
+        puts "#{player.name} is the winner"
         return false
     end
 

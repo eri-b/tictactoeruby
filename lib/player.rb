@@ -31,6 +31,8 @@ class Player
         while !@board.position_ok?(index)
           print "Position taken. Please select another: "
           #TODO loop the input
+          new_try = gets.chomp.upcase
+          index = new_try if check_format(new_try)
         end
         @board.add(index, @symbol)
     end
