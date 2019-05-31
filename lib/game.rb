@@ -1,9 +1,12 @@
 class Game
-    def initialize
+    def initialize (player1, player2, board)
+      @player1 = player1
+      @player2 = player2
+      @board = board
     end
 
     def is_valid?(index)
-        #validates input and returns 
+        #validates input and returns
         format_ok? && position_ok?
     end
 
@@ -18,13 +21,27 @@ class Game
     end
 
 
+    def start
+      counter = 0
+      game_on = true
+      while game_on
+
+        player1.move if counter % 2 == 0
+        player2.move if counter % 2 == 1
+
+        counter += 1
+
+        game_on = false if game_over
+
+      end
+      puts "game over"
+    end
 
 
 
 
 
-    
-    
+
     def start
       puts "Welcome to Tic Tac Toe"
       print "Start a new game by typing Start: "

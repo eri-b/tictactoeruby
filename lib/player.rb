@@ -4,7 +4,7 @@ class Player
     def initialize(name, symbol, choices)
         @name = name
         @symbol = symbol
-        @choices = choices
+        @choices = []
     end
 
     def move(index)
