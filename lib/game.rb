@@ -1,4 +1,8 @@
+require_relative 'ui'
+
 class Game
+  include Ui
+
     def initialize (player1, player2, board)
       @player1 = player1
       @player2 = player2
@@ -21,6 +25,7 @@ class Game
         # take the current player move
         player = turn(counter)
         index = player.get_move
+        index = check_move(@board, index)
         player.move(index)
     end
 
@@ -37,7 +42,7 @@ class Game
     end
 
     def game_over(player)
-        @board.print_board
+      print_board(@board)
         puts ""
         puts "#{player.name} is the winner"
     end

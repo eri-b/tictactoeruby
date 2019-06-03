@@ -3,7 +3,7 @@ require_relative '../lib/game.rb'
 require_relative '../lib/player.rb'
 require_relative '../lib/ui'
 
-extend Ui
+include Ui
 settings = start
 
 new_board = Board.new()

@@ -1,5 +1,8 @@
+require_relative 'ui'
+
 class Player
-    attr_accessor :name, :symbol, :choices
+    include Ui
+    attr_accessor :name, :symbol, :choices, :board
 
     def initialize(name, symbol, board)
         @name = name
@@ -9,19 +12,13 @@ class Player
     end
 
     def get_move
-      @board.print_board
+      print_board(@board)
       print "#{@name}'s turn. Please enter your move: "
       p_input = gets.chomp.upcase
       p_input if check_format(p_input)
     end
 
     def move(index)
-        while !@board.position_ok?(index)
-          print "Position taken. Please select another: "
-          #TODO loop the input
-          new_try = gets.chomp.upcase
-          index = new_try if check_format(new_try)
-        end
         @board.add(index, @symbol)
     end
 

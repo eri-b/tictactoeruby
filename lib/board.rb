@@ -17,21 +17,6 @@ class Board
     record(index, symbol)
   end
 
-  def print_board
-    puts ""
-    (1..3).each do |i|
-      (1..3).each do |j|
-        if @board["#{i}#{j}"]
-          print @board["#{i}#{j}"] + "  "
-        else
-          print "#{i}#{j}  "
-        end
-      end
-      puts ""
-      puts ""
-    end
-  end
-
   private
 
   def record(index, symbol)
