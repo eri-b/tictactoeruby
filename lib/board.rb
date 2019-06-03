@@ -6,8 +6,6 @@ class Board
     @score = Hash.new("")
   end
 
-
-
   def add(index, symbol)
     #add value to the board if validated
     @board[index] = symbol

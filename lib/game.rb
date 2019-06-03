@@ -38,6 +38,15 @@ class Game
           game_over(@player1, @board) if value == "XXX"
           game_over(@player2, @board) if value == "OOO"
           return false if value == "XXX" || value == "OOO"
+          return false if game_draw
+      end
+    end
+
+    def game_draw
+      if @board.board.length >= 9
+        print_board(@board)
+        draw_message
+        return true 
       end
     end
 

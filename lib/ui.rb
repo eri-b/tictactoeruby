@@ -35,7 +35,7 @@ module Ui
     (1..3).each do |i|
       (1..3).each do |j|
         if new_board.board["#{i}#{j}"]
-          print new_board.board["#{i}#{j}"] + "  "
+          print new_board.board["#{i}#{j}"] + "   "
         else
           print "#{i}#{j}  "
         end
@@ -92,6 +92,9 @@ module Ui
       reset_game if val == "yes"
   end
 
+  def draw_message
+    puts "The game is draw!"
+  end
 
 
 end #module
