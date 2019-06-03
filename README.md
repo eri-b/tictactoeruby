@@ -1,25 +1,19 @@
 ## Tic Tac Toe Game
 
-### Ruby
+### Running instructions
 
-In order to run the game, player must run the ruby file 'game.rb' located inside folder 'bin'.
+In order to run the game, player must run the ruby file 'tictactoe.rb' located inside folder 'bin'.
 
 ### Game Basics
 
 At start, player is prompted to type "start" in order to start the game.
-After that, he or she must choose between single or multi player.
 
-### Single Player:
+Each player enters their names, after that, first move is randomnly assigned to a player.
 
-Player is going to play X while AI is going to play O.
+Players will take turns and can select their moves based on available board positions.
 
-### Multiplayer:
-
-Players will take turns between X and O.
-
-In any case, winner is the first one to make a row of either 3 X's or 3 O's vertically, horizontally or diagonally.
-
-Player is presented with the board and asked to choose a position according to the following board.
+Winner is the first one to make a sequence of 3 X's or 3 O's vertically, horizontally or diagonally.
+If the board is filled without a sequence, the game is a draw.
 
 ### Board:
 

@@ -48,8 +48,8 @@ module Ui
   def get_move(board, player)
     print_board(board)
     print "#{player.name}'s turn. Please enter your move: "
-    p_input = gets.chomp.upcase
-    p_input = check_format(p_input)
+    user_move = gets.chomp.upcase
+    user_move = check_format(user_move)
   end
 
   def check_format(input)
