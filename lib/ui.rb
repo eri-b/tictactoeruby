@@ -30,12 +30,12 @@ module Ui
     return [game_on, player1, player2]
   end
 
-  def print_board(new_board)
+  def print_board(board)
     puts ""
     (1..3).each do |i|
       (1..3).each do |j|
-        if new_board.board["#{i}#{j}"]
-          print new_board.board["#{i}#{j}"] + "   "
+        if board.values["#{i}#{j}"]
+          print board.values["#{i}#{j}"] + "   "
         else
           print "#{i}#{j}  "
         end
@@ -65,8 +65,8 @@ module Ui
     true if index =~ /^[1-3][1-3]$/
   end
 
-  def check_move(new_board, index)
-    while !new_board.position_ok?(index)
+  def check_move(board, index)
+    while !board.position_ok?(index)
       print "Position taken. Please select another: "
       #TODO loop the input
       new_try = gets.chomp.upcase
@@ -77,7 +77,7 @@ module Ui
 
   def position_ok?(index)
       #checks if position is valid and/or available
-      true if @board[index] == nil
+      true if @values[index] == nil
   end
 
   def game_over(player, board)

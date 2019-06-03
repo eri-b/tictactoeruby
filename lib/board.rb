@@ -1,14 +1,14 @@
 class Board
-  attr_accessor :board, :score
+  attr_accessor :values, :score
 
   def initialize
-    @board = Hash.new
+    @values = Hash.new
     @score = Hash.new("")
   end
 
   def add(index, symbol)
     #add value to the board if validated
-    @board[index] = symbol
+    @values[index] = symbol
     record(index, symbol)
   end
 

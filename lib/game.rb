@@ -43,7 +43,7 @@ class Game
     end
 
     def game_draw
-      if @board.board.length >= 9
+      if @board.values.length >= 9
         print_board(@board)
         draw_message
         return true 
@@ -51,7 +51,7 @@ class Game
     end
 
     def reset_game
-      @board.board = Hash.new
+      @board.values = Hash.new
       @board.score = Hash.new("")
       running
     end
