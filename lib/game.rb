@@ -24,7 +24,7 @@ class Game
     def play(counter)
         # take the current player move
         player = turn(counter)
-        index = player.get_move
+        index = get_move(@board, player)
         index = check_move(@board, index)
         player.move(index)
     end
@@ -35,22 +35,10 @@ class Game
 
     def game_on
       @board.score.each do |key, value|
-          game_over(@player1) if value == "XXX"
-          game_over(@player2) if value == "OOO"
+          game_over(@player1, @board) if value == "XXX"
+          game_over(@player2, @board) if value == "OOO"
           return false if value == "XXX" || value == "OOO"
       end
-    end
-
-    def game_over(player)
-      print_board(@board)
-        puts ""
-        puts "#{player.name} is the winner"
-    end
-
-    def after_game
-        print "Play again? (yes): "
-        val = gets.chomp.downcase
-        reset_game if val == "yes"
     end
 
     def reset_game

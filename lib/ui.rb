@@ -45,14 +45,51 @@ module Ui
     end
   end
 
+  def get_move(board, player)
+    print_board(board)
+    print "#{player.name}'s turn. Please enter your move: "
+    p_input = gets.chomp.upcase
+    p_input = check_format(p_input)
+  end
+
+  def check_format(input)
+    while !format_ok?(input)
+      print "Wrong format. Please enter your move: "
+      input = gets.chomp.upcase
+    end
+    return input
+  end
+
+  def format_ok?(index)
+    #validates input format
+    true if index =~ /^[1-3][1-3]$/
+  end
+
   def check_move(new_board, index)
     while !new_board.position_ok?(index)
       print "Position taken. Please select another: "
       #TODO loop the input
       new_try = gets.chomp.upcase
-      index = new_try if check_format(new_try)
+      index = check_format(new_try)
     end
-    index
+    return index
+  end
+
+  def position_ok?(index)
+      #checks if position is valid and/or available
+      true if @board[index] == nil
+  end
+
+  def game_over(player, board)
+      print_board(board)
+      puts ""
+      puts "#{player.name} is the winner"
+  end
+
+  def after_game
+      print "Play again? (yes): "
+      val = gets.chomp.downcase
+      reset_game if val == "yes"
   end
 
 

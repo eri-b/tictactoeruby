@@ -6,10 +6,7 @@ class Board
     @score = Hash.new("")
   end
 
-  def position_ok?(index)
-      #checks if position is valid and/or available
-      true if @board[index] == nil
-  end
+
 
   def add(index, symbol)
     #add value to the board if validated
